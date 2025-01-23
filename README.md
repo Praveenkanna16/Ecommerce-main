@@ -15,3 +15,16 @@ Concpets covered in this project are :
 - Basics of database schema design
 - Role of authentication in web applications
 # Ecommerce-main
+
+# Ecommerce Follow-Along Project
+
+## Milestone 3: Project Setup for Backend
+
+### Achievements:
+- **Backend Folder Structure**: Organized the backend into routes, controllers, models, and middleware folders.
+- **Server Setup**: Configured a Node.js and Express server to handle API requests.
+- **Database Integration**: Connected the backend to MongoDB using Mongoose.
+- **Error Handling**: Added basic error-handling middleware to manage server errors.
+- **API Endpoints**: Created a simple route for products with a placeholder response.
+
+
