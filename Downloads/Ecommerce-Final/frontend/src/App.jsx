@@ -2,6 +2,7 @@
 import {Routes, Route} from 'react-router-dom'
 import Login from './Components/Login'
 import './App.css'
+import SignUp from './Components/Singup'
 
 function App() {
  
@@ -9,8 +10,12 @@ function App() {
   return (
     <>
     <Routes>
-      <Route path='/' element={<Login />} />
+      <Route path='/login' element={<Login />} />
     </Routes>
+    <Routes>
+      <Route path='/signup' element={<SignUp />} />
+    </Routes>
+     
      
     </>
   )

@@ -1,26 +1,22 @@
 import { useState } from "react";
+import { Link } from "react-router-dom"; // Add this line at the top of your file
+
 
 export default function Example() {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
-    <>
-      {/**
-        This example requires updating your template:
-
-        <html class="h-full bg-white">
-        <body class="h-full">
-      */}
+    <div className="bg-gray-900/50 rounded-md p-6">
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-         
-          <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-white">
+          <h2 className="mt-10 text-center text-2xl font-bold tracking-tight text-white">
             Sign in to your account
           </h2>
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
           <form className="space-y-6" action="#" method="POST">
+            {/* Email Input */}
             <div>
               <label
                 htmlFor="email"
@@ -39,6 +35,7 @@ export default function Example() {
               </div>
             </div>
 
+            {/* Password Input */}
             <div>
               <label
                 htmlFor="password"
@@ -55,10 +52,8 @@ export default function Example() {
                   className="block w-full rounded-md border-0 py-1.5 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-white focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
                 <div
-
-                  
                   onClick={() => setShowPassword(!showPassword)}
-                  className="size-8 absolute inset-y-0 right-0 flex items-center pr-3 text-white hover:text-white"
+                  className="absolute inset-y-0 right-0 flex items-center pr-3 text-white hover:text-indigo-500 cursor-pointer"
                 >
                   {showPassword ? (
                     <svg
@@ -111,16 +106,19 @@ export default function Example() {
                   )}
                 </div>
               </div>
-              <div className="mt-2 text-sm">
-                <a
-                  href="#"
-                  className="font-semibold text-indigo-600 hover:text-indigo-500"
-                >
-                  Forgot password?
-                </a>
-              </div>
             </div>
 
+            {/* Forgot password */}
+            <div className="mt-2 text-sm">
+              <a
+                href="#"
+                className="font-semibold text-indigo-600 hover:text-indigo-500"
+              >
+                Forgot password?
+              </a>
+            </div>
+
+            {/* Remember me checkbox */}
             <div className="flex items-center justify-between">
               <div className="flex items-center">
                 <input
@@ -138,6 +136,7 @@ export default function Example() {
               </div>
             </div>
 
+            {/* Submit Button */}
             <div>
               <button
                 type="submit"
@@ -146,20 +145,22 @@ export default function Example() {
                 Sign in
               </button>
             </div>
+
+            {/* Sign up link */}
             <div className="mt-2 text-sm text-center">
               <p>
-                Don’t have an account?{' '}
-                <a
-                  href="#"
+                Don’t have an account?{" "}
+                <Link
+                  to="/signup" // Navigate to the signup page
                   className="font-semibold text-indigo-600 hover:text-indigo-500"
                 >
                   Sign up
-                </a>
+                </Link>
               </p>
             </div>
           </form>
         </div>
       </div>
-    </>
+    </div>
   );
 }
