@@ -19,6 +19,11 @@ app.listen(3000,async ()=>{
     }
 })
 
-app.use(express.json());
+app.use(express.json());   
 
- app.use('/auth',userRouter)
+app.use('/auth',userRouter);
+app.use('/product',productRouter);
+
+app.get('/',(req, res)=>{
+    res.send("Hello world");
+})

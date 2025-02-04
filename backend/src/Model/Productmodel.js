@@ -1,41 +1,52 @@
-const {model,Schema}=require("mongoose");
+const {model,Schema}=require('mongoose');
 
-const productSchema=new Schema({
-    name: {
+const userSchema=new Schema({
+    name:{
         type: String,
-        required: true,
+        required: [true, "Please enter your name!"],
       },
-      description: {
+      email:{
         type: String,
-        required: true,
+        required: [true, "Please enter your email!"],
+        validate: {
+          validator: function(value) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+          },
+          message: "Please enter a valid email address"
+        }
       },
-      image: {
-        type: String,
-        required: true,
-      },
-      price: {
+      price:{
         type: Number,
-        required: true,
+        required: [true, "Please enter your price"],
+        minLength: [1, "Password should be greater than 0"],
       },
-      category: {
+      description:{
         type: String,
-        required: true,
+        required: [true, "Please enter your description"],
+        minLength: [8, "Description should be greater than 8 characters"],
       },
-      tags: {
-          type:[String],
-          required: true,
+      category:{
+        type: String,
+        required: [true, "Please enter your category"],
       },
-      stock: {
+      stock:{
         type: Number,
-        required: true,
+        required: [true, "Please enter your stock"],
+        minLength: [1, "Stock should be greater than 0"],
       },
-      email: {
-        type: String,
-        required: true,
+      tags:{
+        type: [String],
+        required: [true, "Please enter your tags"],
       },
+      images:{
+        type: listof(String),
+        required: [true, "Please add your imgs"],
+      },
+      createdAt:{
+        type: Date,
+        default: Date.now(),
+      }
     },
     {
         timestamps: true,
-    })
-    const productmodel = model("product",productSchema);
-    module.exports=productmodel
+      });
