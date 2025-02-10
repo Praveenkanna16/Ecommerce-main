@@ -79,3 +79,11 @@ Design the Homepage Layout. Set up a responsive grid layout to display multiple 
 ProductForm Component
 Overview
 The ProductForm is a React component for adding products with details like name, description, category, price, stock, and images. Users can upload multiple images with previews and choose a category from a predefined list.
+
+
+## Milestone 11: Displaying Products Dynamically
+
+In this milestone, we successfully:
+- Created an endpoint in the Express server to fetch all products from MongoDB.
+- Implemented a function in the frontend to retrieve this data via an API call.
+- Displayed the fetched data dynamically using the previously created Product Card component.
