@@ -1,19 +1,32 @@
-const express=require('express');
-const app=express();
-const connectDB=require('./src/Database/db');
+const express = require('express');
+const app = express();
+const connectDB = require('./src/Database/db'); // Import DB connection function
 
 require('dotenv').config({
-    path:'./src/Config/.env'
+    path: './src/Config/.env'  // Ensure this path is correct
 });
 
-const port=process.env.port;
-const url=process.env.db_url;
+// Use PORT and DB_URL from .env
+const port = process.env.PORT || 3000;  // Ensure variable name matches .env
+const url = process.env.DB_URL;  // Ensure variable name matches .env
 
-app.listen(3000,async ()=>{
-    console.log(`Server is running on port ${port}`);
-    try{
+// Connect to MongoDB before starting the server
+const startServer = async () => {
+    try {
         await connectDB(url);
-    }catch(error){
-        console.log(error);
+        console.log('✅ Database connected successfully.');
+
+        app.get('/', (req, res) => {
+            res.json({ status: 'Connected' });
+        });
+
+        app.listen(port, () => {
+            console.log(` Server is running on port ${port}`);
+        });
+    } catch (error) {
+        console.error(' Database connection failed:', error);
+        process.exit(1); // Exit process if DB connection fails
     }
-})
+};
+
+startServer();
