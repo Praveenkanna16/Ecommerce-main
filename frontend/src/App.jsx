@@ -4,7 +4,8 @@ import './App.css';
 import Home from './pages/Home'; 
 import SignUp from './Components/Singup';
 import { ProductForm } from './Components/ProductForm';
-import { ProductCardSeller } from './Components/ProductCardSeller';
+// import { ProductCardSeller } from './Components/ProductCardSeller';
+
 
 function App() {
   return (
@@ -14,7 +15,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/productform" element={<ProductForm/>} />
-        <Route path='/my-product' element={<ProductCardSeller/>}/>
+        {/* <Route path='/my-product' element={<ProductCardSeller/>}/> */}
+
       </Routes>
     </>
   );

@@ -1,5 +1,6 @@
 import React from 'react';
 import Card from '../Components/Card'; 
+import NavBar from '../Components/Navbar'; 
 
 const productDetails = [
   {
@@ -24,6 +25,8 @@ const productDetails = [
 
 const Home = () => {
   return (
+    <>
+    <NavBar/>
     <div className="flex flex-row p-4">
       {productDetails.map((product, index) => (
         <Card
@@ -35,6 +38,8 @@ const Home = () => {
         />
       ))}
     </div>
+    </>
+    
   );
 };
 
