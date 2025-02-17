@@ -1,6 +1,7 @@
 import React,{useState} from 'react';
 import ProductCard from './Card';
 import axios from 'axios'
+import NavBar from '../Components/Navbar'; 
 
 // const productDetails=[
     // {

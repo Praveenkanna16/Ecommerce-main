@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom"; // Add this line at the top of your file
-
+import NavBar from '../Components/Navbar'; 
 
 export default function Example() {
   const [showPassword, setShowPassword] = useState(false);

@@ -1,4 +1,5 @@
 import React from 'react';
+import NavBar from '../Components/Navbar'; 
 
 const Card = ({ name, price, image, description }) => {
   return (

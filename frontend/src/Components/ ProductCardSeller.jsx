@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import NavBar from '../Components/Navbar'; 
 
 export const ProductCardSeller = ({ image, name, price, description }) => {
   const [currentIndex, setCurrentIndex] = useState(0);

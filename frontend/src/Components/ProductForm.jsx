@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import axios from "axios";
 import { Link } from "react-router-dom"; // Import Link to navigate to other pages
+import NavBar from '../Components/Navbar'; 
 
 export const ProductForm = () => {
    const nameRef = useRef();

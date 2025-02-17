@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom"; // Import Link to navigate to SignIn
-
+import NavBar from '../Components/Navbar'; 
 export default function SignUp() {
   const nameRef = useRef();
   const emailRef = useRef();

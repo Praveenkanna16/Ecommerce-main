@@ -24,6 +24,10 @@ const productDetails = [
 ];
 
 const Home = () => {
+  const handleAddToCart = (product) => {
+    console.log(`Added ${product.name} to the cart`);
+  };
+
   return (
     <>
     <NavBar/>
@@ -35,6 +39,8 @@ const Home = () => {
           price={product.price}
           image={product.image}
           description={product.description}
+          onClick={() => handleAddToCart(product)}
+          buttonText="Add to cart"
         />
       ))}
     </div>
@@ -44,3 +50,4 @@ const Home = () => {
 };
 
 export default Home;
+
