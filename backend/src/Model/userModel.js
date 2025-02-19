@@ -15,6 +15,20 @@ const userSchema = new mongoose.Schema({
         minLength: [4, "Password should be greater than 4 characters"]
         
       },
+      cart: [
+        {
+          productId: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Product",
+          },
+          name: String,
+          price: Number,
+          quantity: {
+            type: Number,
+            default: 1,
+          },
+        },
+      ],
     //   phoneNumber:{
     //     type: Number,
     //   },

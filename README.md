@@ -79,3 +79,27 @@ Design the Homepage Layout. Set up a responsive grid layout to display multiple 
 ProductForm Component
 Overview
 The ProductForm is a React component for adding products with details like name, description, category, price, stock, and images. Users can upload multiple images with previews and choose a category from a predefined list.
+
+Milestone 10:
+Defined the structure of product data Built a POST endpoint to receive product data.
+
+Milestone 11:
+Fetches and displays Products Created an API endpoint to fetch all products from the database. Implemented a frontend function to fetch and display product data dynamically. Used useState and useEffect to manage the data lifecycle.
+
+Milestone 12:
+Fetch & Display Filtered Products Created an API endpoint to fetch products based on the user's email. Implemented frontend logic to request and display filtered products. Ensured efficient state management using React hooks.
+
+Milestone 13:
+Edit Product Functionality Created a PUT API endpoint to update product details in MongoDB. Added an Edit button on the product card. Implemented auto-filled form for editing existing product details. Connected frontend with backend to send PUT requests. Handled errors and ensured data validation.
+
+Milestone 14:- Edit & Delete Product Functionality
+Created a PUT API endpoint to update product details in MongoDB. Added an Edit button on the product card. Implemented auto-filled form for editing existing product details. Connected frontend with backend to send PUT requests. Handled errors and ensured data validation. Created a DELETE API endpoint to remove products from MongoDB. Added a Delete button to the product card. Integrated frontend with backend to send DELETE requests.
+
+Milestone 15:
+Created a New Nav Component The Navbar should include links to the following pages: Home My Products Add Product Cart
+
+Milestone 16: Product Info Page
+
+Overview
+
+In this milestone, we created a product info page that displays all the product data and allows users to select the quantity and add the items to their cart.
