@@ -4,6 +4,9 @@ const express = require('express');
 const app = express();
 const connectDB = require('./src/Database/db'); // Import DB connection function
 
+// Import Routes
+const cartRoutes = require('./src/Routes/cartRoutes');  
+
 // Middleware to parse JSON requests
 app.use(express.json());
 
@@ -18,6 +21,9 @@ const startServer = async () => {
         app.get('/', (req, res) => {
             res.json({ status: 'Connected' });
         });
+
+        // Use the cart routes
+        app.use('/api/cart', cartRoutes);
 
         app.listen(port, () => {
             console.log(`🚀 Server is running on port ${port}`);
