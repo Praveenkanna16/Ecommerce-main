@@ -34,17 +34,9 @@ const ProductPage = () => {
       ...product,
       quantity: quantity,
     };
-    
-    // Get the current cart from localStorage
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    
-    // Add the new product to the cart
     cart.push(cartItem);
-    
-    // Store the updated cart back to localStorage
     localStorage.setItem("cart", JSON.stringify(cart));
-
-    // Navigate to the Cart page
     window.location.href = "/cart";
   };
 
@@ -75,7 +67,7 @@ const ProductPage = () => {
                   id="quantity"
                   min="1"
                   value={quantity}
-                  onChange={(e) => setQuantity(e.target.value)}
+                  onChange={(e) => setQuantity(parseInt(e.target.value, 10) || 1)}
                   className="border border-gray-300 rounded-md p-2 text-lg w-16"
                 />
               </div>

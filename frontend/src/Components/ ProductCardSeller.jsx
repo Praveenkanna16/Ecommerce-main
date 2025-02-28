@@ -53,13 +53,13 @@ export const ProductCardSeller = ({ image, name, price, description }) => {
         <h1 className="text-lg font-bold my-2">${price}</h1>
         <button
           className="w-full text-white px-4 py-2 rounded-md bg-neutral-900"
-          onClick={() => handleDelete()}
+          onClick={() => handleDelete(id)}
         >
           Delete
         </button>
         <button
           className="w-full text-white px-4 py-2 rounded-md bg-neutral-900"
-          onClick={() => handleEdit()}
+          onClick={() => handleEdit(id)}
         >
           Edit
         </button>

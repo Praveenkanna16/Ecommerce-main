@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import NavBar from "./Navbar";
+import NavBar from "../Components/Navbar";
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -9,11 +9,8 @@ const Cart = () => {
       const cart = JSON.parse(localStorage.getItem("cart")) || [];
       setCartItems(cart);
     };
-
-    // Load cart on mount
     fetchCart();
 
-    // Listen for storage changes (e.g., if another tab updates localStorage)
     window.addEventListener("storage", fetchCart);
 
     return () => {

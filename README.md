@@ -103,3 +103,10 @@ Milestone 16: Product Info Page
 Overview
 
 In this milestone, we created a product info page that displays all the product data and allows users to select the quantity and add the items to their cart.
+
+Milestone 17: Cart Functionality Implementation
+
+In this milestone, we implemented the cart functionality, allowing users to add, view, and remove items from their cart. The cart state is managed using localStorage to persist data across page reloads.
+
+Milestone 18:
+
