@@ -6,6 +6,7 @@ import SignUp from './Components/Singup';
 import { ProductForm } from './Components/ProductForm';
 import ProductPage from './Components/ProductPage';
 import Cart from './pages/Cart';
+import Profile from './Components/Profile';
 // import { ProductCardSeller } from './Components/ProductCardSeller';
 
 
@@ -21,6 +22,7 @@ function App() {
         {/* <Route path='/my-product' element={<ProductCardSeller/>}/> */}
         <Route path="/productpage" element={<ProductPage/>} />
         <Route path="/cart" element={<Cart/>} />
+        <Route path="/profile" element={<Profile/>}/>
       </Routes>
     </>
   );

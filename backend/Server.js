@@ -1,17 +1,17 @@
-require('dotenv').config(); // Load environment variables first
-
 const express = require('express');
+const cors = require('cors'); // Import CORS
+require('dotenv').config();
+
 const app = express();
-const connectDB = require('./src/Database/db'); // Import DB connection function
-
-// Import Routes
-const cartRoutes = require('./src/Routes/cartRoutes');  
-
-// Middleware to parse JSON requests
+app.use(cors({ origin: 'http://localhost:5173', credentials: true })); // Allow requests from frontend
 app.use(express.json());
 
-const port = process.env.PORT || 3000;  
-const dbURL = process.env.DB_URL;  
+const connectDB = require('./src/Database/db');
+const cartRoutes = require('./src/Routes/cartRoutes');
+const userRoutes = require('./src/Routes/userRoutes');
+
+const port = process.env.PORT || 5000;
+const dbURL = process.env.DB_URL;
 
 const startServer = async () => {
     try {
@@ -22,15 +22,16 @@ const startServer = async () => {
             res.json({ status: 'Connected' });
         });
 
-        // Use the cart routes
+        // Use routes
         app.use('/api/cart', cartRoutes);
+        app.use('/api/user', userRoutes);
 
         app.listen(port, () => {
             console.log(`🚀 Server is running on port ${port}`);
         });
     } catch (error) {
         console.error('❌ Database connection failed:', error.message);
-        process.exit(1); // Exit process if DB connection fails
+        process.exit(1);
     }
 };
 

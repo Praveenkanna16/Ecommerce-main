@@ -110,3 +110,10 @@ In this milestone, we implemented the cart functionality, allowing users to add,
 
 Milestone 18:
 
+Backend Endpoint for Cart
+
+In this milestone, we created a backend endpoint to fetch all products inside a user’s cart using their email. This allows the cart page to display the user’s cart items dynamically.
+
+Milestone 19: Cart Page & Quantity Update
+
+In this milestone, we created a cart page UI to display products using the backend endpoint from Milestone 18. Each product has + and - buttons to increase or decrease quantity. Additionally, we implemented a backend endpoint to update product quantity in the cart.
