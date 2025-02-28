@@ -117,3 +117,9 @@ In this milestone, we created a backend endpoint to fetch all products inside a 
 Milestone 19: Cart Page & Quantity Update
 
 In this milestone, we created a cart page UI to display products using the backend endpoint from Milestone 18. Each product has + and - buttons to increase or decrease quantity. Additionally, we implemented a backend endpoint to update product quantity in the cart.
+
+Milestone 20 - Profile Page & Backend Endpoint
+
+Project Overview
+
+In this milestone, we created a profile page frontend and a backend endpoint to fetch and display user data. The profile page includes a profile photo, name, email, and address details.
