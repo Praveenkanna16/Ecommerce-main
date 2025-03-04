@@ -8,7 +8,7 @@ const Profile = () => {
     useEffect(() => {
         const fetchProfile = async () => {
             try {
-                const email = localStorage.getItem("userEmail") || "user@example.com"; // Get email dynamically
+                const email = localStorage.getItem("userEmail") || "user@example.com"; 
                 console.log("Fetching profile for:", email);
 
                 const { data } = await axios.get(`http://localhost:5000/api/user/profile/${email}`);

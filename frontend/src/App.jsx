@@ -7,6 +7,7 @@ import { ProductForm } from './Components/ProductForm';
 import ProductPage from './Components/ProductPage';
 import Cart from './pages/Cart';
 import Profile from './Components/Profile';
+import AddressForm from './Components/AddressForm';
 // import { ProductCardSeller } from './Components/ProductCardSeller';
 
 
@@ -23,6 +24,7 @@ function App() {
         <Route path="/productpage" element={<ProductPage/>} />
         <Route path="/cart" element={<Cart/>} />
         <Route path="/profile" element={<Profile/>}/>
+        <Route path="/address" element={<AddressForm/>}/>
       </Routes>
     </>
   );
