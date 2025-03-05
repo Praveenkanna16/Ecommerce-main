@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors'); // Import CORS
-require('dotenv').config();
+require('dotenv').config({path:"./src/Config/.env"});
 
 const app = express();
 app.use(cors({ origin: 'http://localhost:5173', credentials: true })); // Allow requests from frontend
@@ -10,8 +10,8 @@ const connectDB = require('./src/Database/db');
 const cartRoutes = require('./src/Routes/cartRoutes');
 const userRoutes = require('./src/Routes/userRoutes');
 
-const port = process.env.PORT || 5000;
-const dbURL = process.env.DB_URL;
+const port = process.env.port || 3000;
+const dbURL = process.env.MONGODB_URI;
 
 const startServer = async () => {
     try {
