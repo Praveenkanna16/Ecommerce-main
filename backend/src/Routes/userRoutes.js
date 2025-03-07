@@ -1,27 +1,53 @@
-const { Router } = require("express");
-const userModel = require("../Model/userModel");
+const express = require("express");
+const router = express.Router();
+const Order = require("../Model/order.js");
 
-const userRouter = Router();
+// Route to place an order
+router.post("/place-order", async (req, res) => {
+  try {
+    const { userId, address, products, totalAmount } = req.body;
 
-userRouter.get("/profile/:email", async (req, res) => {
-    try {
-        const { email } = req.params;
-        const user = await userModel.findOne({ email });
-
-        if (!user) {
-            return res.status(404).json({ error: "User not found" });
-        }
-
-        res.status(200).json({
-            name: user.name,
-            email: user.email,
-            profilePhoto: user.profilePhoto || "default-avatar.png",
-            addresses: user.addresses || [],
-        });
-    } catch (error) {
-        console.error("Server Error:", error);
-        res.status(500).json({ error: "Server error" });
+    if (!userId || !address || !products || products.length === 0 || !totalAmount) {
+      return res.status(400).json({ message: "All fields are required" });
     }
+
+    // Creating a new order instance
+    const newOrder = new Order({
+      userId,
+      address,
+      products,
+      totalAmount,
+      status: "Pending",
+    });
+
+    // Save order to the database
+    await newOrder.save();
+
+    res.status(201).json({
+      message: "Order placed successfully",
+      order: newOrder,
+    });
+  } catch (error) {
+    console.error("Error placing order:", error);
+    res.status(500).json({ message: "Server Error", error: error.message });
+  }
 });
 
-module.exports = userRouter;
+// Route to get order details by user ID
+router.get("/orders/:userId", async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const orders = await Order.find({ userId }).sort({ createdAt: -1 });
+
+    if (!orders.length) {
+      return res.status(404).json({ message: "No orders found for this user" });
+    }
+
+    res.status(200).json(orders);
+  } catch (error) {
+    console.error("Error fetching orders:", error);
+    res.status(500).json({ message: "Server Error", error: error.message });
+  }
+});
+
+module.exports = router;
