@@ -9,6 +9,8 @@ app.use(express.json());
 const connectDB = require('./src/Database/db');
 const cartRoutes = require('./src/Routes/cartRoutes');
 const userRoutes = require('./src/Routes/userRoutes');
+const addressRoutes = require('./src/Routes/addressRoutes');
+const orderRoutes = require('./src/Routes/orderRoutes');
 
 const port = process.env.port || 3000;
 const dbURL = process.env.MONGODB_URI;
@@ -25,6 +27,8 @@ const startServer = async () => {
         // Use routes
         app.use('/api/cart', cartRoutes);
         app.use('/api/user', userRoutes);
+        app.use('api/address',addressRoutes);
+        app.use('/api/order', orderRoutes);
 
         app.listen(port, () => {
             console.log(`🚀 Server is running on port ${port}`);

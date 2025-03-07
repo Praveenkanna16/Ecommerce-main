@@ -4,29 +4,43 @@ import axios from "axios";
 const Profile = () => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
+        let isMounted = true; // To avoid state updates on unmounted components
+
         const fetchProfile = async () => {
             try {
-                const email = localStorage.getItem("userEmail") || "user@example.com"; 
+                const storedEmail = localStorage.getItem("userEmail");
+                if (!storedEmail) {
+                    throw new Error("No email found in localStorage");
+                }
+
+                const email = encodeURIComponent(storedEmail); // Ensure email is properly formatted for URL
                 console.log("Fetching profile for:", email);
 
                 const { data } = await axios.get(`http://localhost:5000/api/user/profile/${email}`);
                 console.log("Received Data:", data);
 
-                setUser(data);
-            } catch (error) {
-                console.error("Error fetching profile:", error);
+                if (isMounted) setUser(data);
+            } catch (err) {
+                console.error("Error fetching profile:", err);
+                if (isMounted) setError(err.message || "Failed to load profile");
             } finally {
-                setLoading(false);
+                if (isMounted) setLoading(false);
             }
         };
 
         fetchProfile();
-    }, []);
 
-    if (loading) return <p>Loading...</p>;
-    if (!user) return <p>Error fetching profile. Try again later.</p>;
+        return () => {
+            isMounted = false; // Cleanup function
+        };
+    }, []); // Dependency array remains empty to fetch data only once on mount
+
+    if (loading) return <p>Loading profile...</p>;
+    if (error) return <p style={{ color: "red" }}>Error: {error}</p>;
+    if (!user) return <p>No profile found.</p>;
 
     return (
         <div>
@@ -36,8 +50,8 @@ const Profile = () => {
             ) : (
                 <p>No Profile Photo</p>
             )}
-            <p>Name: {user.name}</p>
-            <p>Email: {user.email}</p>
+            <p><strong>Name:</strong> {user.name}</p>
+            <p><strong>Email:</strong> {user.email}</p>
 
             <h3>Addresses</h3>
             {user.addresses && user.addresses.length > 0 ? (
@@ -52,7 +66,7 @@ const Profile = () => {
                 <p>No address found</p>
             )}
 
-            <button>Add Address</button>
+            <button onClick={() => alert("Add Address Clicked!")}>Add Address</button>
         </div>
     );
 };

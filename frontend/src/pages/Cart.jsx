@@ -25,6 +25,11 @@ const Cart = () => {
     alert("Item removed from cart!");
   };
 
+  const handlePlaceOrder = () => {
+    // Logic to place the order
+    alert("Order placed successfully!");
+  };
+
   return (
     <>
       <NavBar />
@@ -59,6 +64,15 @@ const Cart = () => {
               </div>
             ))}
           </div>
+        )}
+
+        {cartItems.length > 0 && (
+          <button
+            onClick={handlePlaceOrder}
+            className="mt-6 px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 focus:outline-none"
+          >
+            Place Order
+          </button>
         )}
       </div>
     </>

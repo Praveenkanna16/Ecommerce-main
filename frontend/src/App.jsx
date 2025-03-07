@@ -8,6 +8,7 @@ import ProductPage from './Components/ProductPage';
 import Cart from './pages/Cart';
 import Profile from './Components/Profile';
 import AddressForm from './Components/AddressForm';
+// import SelectAddress from './pages/SelectAddress';
 // import { ProductCardSeller } from './Components/ProductCardSeller';
 
 
@@ -25,6 +26,7 @@ function App() {
         <Route path="/cart" element={<Cart/>} />
         <Route path="/profile" element={<Profile/>}/>
         <Route path="/address" element={<AddressForm/>}/>
+        {/* <Route path='/selectaddress' element={<SelectAddress/>}/> */}
       </Routes>
     </>
   );
