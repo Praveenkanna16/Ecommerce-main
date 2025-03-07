@@ -125,3 +125,8 @@ Milestones
 	•	Developed an API endpoint (GET /api/addresses) to fetch all saved addresses
 	•	Implemented Mongoose Order Schema to store order details
 
+🔹 Milestone 24 - Implementing Order Confirmation Page
+    •    Displayed all products being ordered on the confirmation page
+    •    Fetched and displayed the selected delivery address from the database
+    •    Calculated and displayed the total cart value dynamically
+    •    Added a “Place Order” button to finalize the purchase
