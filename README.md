@@ -137,3 +137,9 @@ Milestones
 	• Stored order details (user, address, products, total amount) in MongoDB
 	• Ensured each product in the cart was processed as a separate order
 	• Implemented error handling for missing fields and invalid requests
+
+🔹 Milestone 26 - Fetching User Orders
+	• Created an API to retrieve all orders for a user based on email
+	• Retrieved the user’s _id from the database using their email
+	• Fetched all orders linked to that user and returned them in the response
+	• Implemented error handling for missing users or database errors
