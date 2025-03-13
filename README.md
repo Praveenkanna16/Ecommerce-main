@@ -143,3 +143,10 @@ Milestones
 	• Retrieved the user’s _id from the database using their email
 	• Fetched all orders linked to that user and returned them in the response
 	• Implemented error handling for missing users or database errors
+
+🔹 Milestone 27 - My Orders Page
+	•	Created a frontend page to display all user orders.
+	•	Sent a GET request to the /api/my-orders endpoint to fetch user orders.
+	•	Passed user email as a parameter to retrieve their specific orders.
+	•	Displayed all orders in a structured format with order details.
+	•	Added a “My Orders” page to the navbar for easy navigation.
