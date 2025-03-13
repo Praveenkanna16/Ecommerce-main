@@ -3,7 +3,8 @@ const mongoose = require("mongoose");
 const OrderSchema = new mongoose.Schema(
   {
     userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
-    address: { type: Object, required: true }, // Selected delivery address
+    userEmail: { type: String, required: true }, // ✅ Add userEmail for easy query
+    address: { type: Object, required: true }, 
     products: [
       {
         productId: { type: mongoose.Schema.Types.ObjectId, ref: "Product", required: true },

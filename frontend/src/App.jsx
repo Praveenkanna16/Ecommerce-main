@@ -10,6 +10,7 @@ import Profile from './Components/Profile';
 import AddressForm from './Components/AddressForm';
 import SelectAddress from './pages/SelectAddress';
 import OrderConfirmation from './Components/OrderConfirmation';
+import MyOrders from './pages/Myorders';
 // import { ProductCardSeller } from './Components/ProductCardSeller';
 
 
@@ -29,6 +30,7 @@ function App() {
         <Route path="/address" element={<AddressForm/>}/>
         <Route path='/selectaddress' element={<SelectAddress/>}/>
         <Route path='/orderconfirmation' element={<OrderConfirmation/>}/>
+        <Route path='/my-order' element={<MyOrders/>}/>
       </Routes>
     </>
   );

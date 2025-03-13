@@ -27,7 +27,7 @@ const startServer = async () => {
         // Use routes
         app.use('/api/cart', cartRoutes);
         app.use('/api/user', userRoutes);
-        app.use('api/address',addressRoutes);
+        app.use('/api/address',addressRoutes);
         app.use('/api/order', orderRoutes);
 
         app.listen(port, () => {
