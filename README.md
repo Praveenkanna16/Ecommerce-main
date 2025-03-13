@@ -130,3 +130,10 @@ Milestones
     •    Fetched and displayed the selected delivery address from the database
     •    Calculated and displayed the total cart value dynamically
     •    Added a “Place Order” button to finalize the purchase
+
+🔹 Milestone 25 - Implementing Place Order API
+	• Created a backend endpoint to handle order placement
+	• Retrieved user ID using the provided email from the database
+	• Stored order details (user, address, products, total amount) in MongoDB
+	• Ensured each product in the cart was processed as a separate order
+	• Implemented error handling for missing fields and invalid requests
