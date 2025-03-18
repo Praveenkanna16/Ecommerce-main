@@ -7,12 +7,10 @@ router.post("/place-order", async (req, res) => {
   try {
     const { userId, userEmail, address, products, totalAmount } = req.body;
 
-    // ✅ Validate required fields
     if (!userId || !userEmail || !address || !products || products.length === 0 || !totalAmount) {
       return res.status(400).json({ message: "All fields are required, including userEmail and products" });
     }
 
-    // ✅ Create and save new order
     const newOrder = new Order({ userId, userEmail, address, products, totalAmount });
     await newOrder.save();
 
@@ -27,8 +25,6 @@ router.post("/place-order", async (req, res) => {
 router.get("/user-orders/:email", async (req, res) => {
   try {
     const { email } = req.params;
-
-    // ✅ Directly fetch orders using `userEmail`
     const orders = await Order.find({ userEmail: email }).sort({ createdAt: -1 });
 
     if (orders.length === 0) {
@@ -42,7 +38,7 @@ router.get("/user-orders/:email", async (req, res) => {
   }
 });
 
-// ✅ Fetch All Orders (Admin Feature)
+// ✅ Fetch All Orders
 router.get("/all-orders", async (req, res) => {
   try {
     const orders = await Order.find().sort({ createdAt: -1 });
@@ -54,7 +50,7 @@ router.get("/all-orders", async (req, res) => {
   }
 });
 
-// ✅ Update Order Status (Admin Feature)
+// ✅ Update Order Status
 router.put("/update-status/:orderId", async (req, res) => {
   try {
     const { orderId } = req.params;
@@ -76,8 +72,30 @@ router.put("/update-status/:orderId", async (req, res) => {
     res.status(500).json({ message: "Server Error", error: error.message });
   }
 });
+router.patch("/order/:orderId/cancel", async (req, res) => {
+  try {
+    const { orderId } = req.params;
 
-// ✅ Delete Order (Admin Feature)
+    const order = await Order.findById(orderId);
+
+    if (!order) {
+      return res.status(404).json({ message: "Order not found" });
+    }
+
+    if (order.status === "Cancelled") {
+      return res.status(400).json({ message: "Order is already cancelled" });
+    }
+
+    order.status = "Cancelled";
+    await order.save();
+
+    res.status(200).json({ message: "Order cancelled successfully", order });
+  } catch (error) {
+    console.error("Error cancelling order:", error);
+    res.status(500).json({ message: "Server Error", error: error.message });
+  }
+});
+
 router.delete("/delete-order/:orderId", async (req, res) => {
   try {
     const { orderId } = req.params;
