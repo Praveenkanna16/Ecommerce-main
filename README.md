@@ -150,3 +150,13 @@ Milestones
 	•	Passed user email as a parameter to retrieve their specific orders.
 	•	Displayed all orders in a structured format with order details.
 	•	Added a “My Orders” page to the navbar for easy navigation.
+
+🔹 Milestone 28 - Cancel Order Feature
+	•	Added a Cancel Order button in My Orders page.
+	•	Button is hidden for already canceled orders.
+	•	Created a backend API to cancel orders by orderId.
+	•	Updated order status to "canceled" in the database.
+	•	Integrated frontend button with the API.
+
+
+ 
