@@ -12,6 +12,7 @@
   "dependencies": {
     "@heroicons/react": "^2.2.0",
     "@material-tailwind/react": "^2.1.10",
+    "@paypal/react-paypal-js": "^8.8.2",
     "avatar": "^0.1.0",
     "axios": "^1.7.9",
     "cores": "^0.8.5",

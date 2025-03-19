@@ -1,20 +1,24 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom"; // Import for navigation
+import { useNavigate } from "react-router-dom";
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 
 const OrderConfirmation = () => {
   const [cartItems, setCartItems] = useState([]);
   const [selectedAddress, setSelectedAddress] = useState(null);
   const [totalPrice, setTotalPrice] = useState(0);
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate(); // Navigation hook
+  const [paymentMethod, setPaymentMethod] = useState("COD");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchCartItems = async () => {
       try {
         const response = await axios.get("/api/cart");
         setCartItems(response.data);
-        setTotalPrice(response.data.reduce((acc, item) => acc + item.price * item.quantity, 0));
+        setTotalPrice(
+          response.data.reduce((acc, item) => acc + item.price * item.quantity, 0)
+        );
       } catch (error) {
         console.error("Error fetching cart:", error);
       }
@@ -33,8 +37,7 @@ const OrderConfirmation = () => {
     fetchAddress();
   }, []);
 
-  // Handle order placement
-  const placeOrder = async () => {
+  const placeOrder = async (isPaid = false) => {
     if (!selectedAddress) {
       alert("Please select a delivery address before placing an order.");
       return;
@@ -42,7 +45,7 @@ const OrderConfirmation = () => {
 
     setLoading(true);
     try {
-      const userEmail = "user@example.com"; // Replace with actual user email from auth
+      const userEmail = "user@example.com";
 
       const orderData = {
         products: cartItems.map((item) => ({
@@ -52,13 +55,15 @@ const OrderConfirmation = () => {
         totalPrice,
         address: selectedAddress,
         userEmail,
+        paymentMethod,
+        isPaid,
       };
 
       const response = await axios.post("/api/orders", orderData);
-      
+
       if (response.status === 201) {
         alert("Order placed successfully!");
-        navigate("/my-orders"); // Redirect to My Orders page
+        navigate("/my-orders");
       }
     } catch (error) {
       console.error("Error placing order:", error);
@@ -77,7 +82,9 @@ const OrderConfirmation = () => {
         {cartItems.length > 0 ? (
           cartItems.map((item) => (
             <div key={item.id} className="order-item">
-              <p>{item.name} - {item.quantity} x ₹{item.price}</p>
+              <p>
+                {item.name} - {item.quantity} x ₹{item.price}
+              </p>
             </div>
           ))
         ) : (
@@ -88,7 +95,10 @@ const OrderConfirmation = () => {
       <div className="order-address">
         <h3>Delivery Address</h3>
         {selectedAddress ? (
-          <p>{selectedAddress.street}, {selectedAddress.city}, {selectedAddress.pincode}</p>
+          <p>
+            {selectedAddress.street}, {selectedAddress.city},{" "}
+            {selectedAddress.pincode}
+          </p>
         ) : (
           <p>Loading address...</p>
         )}
@@ -98,9 +108,61 @@ const OrderConfirmation = () => {
         <h3>Total Price: ₹{totalPrice}</h3>
       </div>
 
-      <button onClick={placeOrder} className="place-order-btn" disabled={loading}>
-        {loading ? "Placing Order..." : "Place Order"}
-      </button>
+      <div className="payment-method">
+        <h3>Select Payment Method:</h3>
+        <label>
+          <input
+            type="radio"
+            name="payment"
+            value="COD"
+            checked={paymentMethod === "COD"}
+            onChange={() => setPaymentMethod("COD")}
+          />
+          Cash on Delivery (COD)
+        </label>
+
+        <label>
+          <input
+            type="radio"
+            name="payment"
+            value="PayPal"
+            checked={paymentMethod === "PayPal"}
+            onChange={() => setPaymentMethod("PayPal")}
+          />
+          Pay with PayPal
+        </label>
+      </div>
+
+      {paymentMethod === "PayPal" && (
+        <PayPalScriptProvider options={{ clientId: "AQtnLb0Vc9NHKrA_O8vFpbA7JgVOhs0kUaMoipBwHq6IJiwdoE4NaaNGqK9yx3DYI6Zgr1p_QppIHxOh" }}>
+          <PayPalButtons
+            style={{ layout: "horizontal" }}
+            createOrder={(data, actions) => {
+              return actions.order.create({
+                purchase_units: [
+                  {
+                    amount: {
+                      value: totalPrice.toFixed(2),
+                    },
+                  },
+                ],
+              });
+            }}
+            onApprove={(data, actions) => {
+              return actions.order.capture().then((details) => {
+                alert(`Transaction completed by ${details.payer.name.given_name}`);
+                placeOrder(true);
+              });
+            }}
+          />
+        </PayPalScriptProvider>
+      )}
+
+      {paymentMethod === "COD" && (
+        <button onClick={() => placeOrder(false)} className="place-order-btn" disabled={loading}>
+          {loading ? "Placing Order..." : "Place Order (COD)"}
+        </button>
+      )}
     </div>
   );
 };
