@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Login from './Components/Login';
 import './App.css';
 import Home from './pages/Home'; 
@@ -11,6 +11,7 @@ import AddressForm from './Components/AddressForm';
 import SelectAddress from './pages/SelectAddress';
 import OrderConfirmation from './Components/OrderConfirmation';
 import MyOrders from './pages/Myorders';
+import PrivateRoute from './Components/PrivateRoute';
 // import { ProductCardSeller } from './Components/ProductCardSeller';
 
 
@@ -23,7 +24,14 @@ function App() {
         <Route path="/" element={<Home />} /> 
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/productform" element={<ProductForm/>} />
+        <Route
+          path="/productform"
+          element={
+            <PrivateRoute>
+              <ProductForm />
+            </PrivateRoute>
+          }
+        />
         {/* <Route path='/my-product' element={<ProductCardSeller/>}/> */}
         <Route path="/productpage" element={<ProductPage/>} />
         <Route path="/cart" element={<Cart/>} />
@@ -32,6 +40,7 @@ function App() {
         <Route path='/selectaddress' element={<SelectAddress/>}/>
         <Route path='/orderconfirmation' element={<OrderConfirmation/>}/>
         <Route path='/my-order' element={<MyOrders/>}/>
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </>
   );
