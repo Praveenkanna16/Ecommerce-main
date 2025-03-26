@@ -10,6 +10,7 @@ const OrderConfirmation = () => {
   const [loading, setLoading] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState("COD");
   const navigate = useNavigate();
+  const clientId = import.meta.env.REACT_APP_PAYPAL_CLIENT_ID;
 
   useEffect(() => {
     const fetchCartItems = async () => {
@@ -105,7 +106,7 @@ const OrderConfirmation = () => {
       </div>
 
       <div className="order-total">
-        <h3>Total Price: ₹{totalPrice}</h3>
+        <h3>Total Price: ₹{totalPrice.toFixed(2)}</h3>
       </div>
 
       <div className="payment-method">
@@ -133,8 +134,8 @@ const OrderConfirmation = () => {
         </label>
       </div>
 
-      {paymentMethod === "PayPal" && (
-        <PayPalScriptProvider options={{ clientId: "AQtnLb0Vc9NHKrA_O8vFpbA7JgVOhs0kUaMoipBwHq6IJiwdoE4NaaNGqK9yx3DYI6Zgr1p_QppIHxOh" }}>
+      {paymentMethod === "PayPal" && clientId && (
+        <PayPalScriptProvider options={{ clientId }}>
           <PayPalButtons
             style={{ layout: "horizontal" }}
             createOrder={(data, actions) => {
@@ -154,8 +155,15 @@ const OrderConfirmation = () => {
                 placeOrder(true);
               });
             }}
+            onError={(err) => {
+              console.error("PayPal error:", err);
+              alert("Transaction failed. Please try again.");
+            }}
           />
-        </PayPalScriptProvider>
+          </PayPalScriptProvider>
+
+
+
       )}
 
       {paymentMethod === "COD" && (

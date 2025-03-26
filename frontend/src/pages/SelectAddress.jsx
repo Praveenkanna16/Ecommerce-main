@@ -12,6 +12,7 @@ const SelectAddress = () => {
 
   return (
     <div>
+      
       <h2>Select Delivery Address</h2>
       {addresses.map((addr, index) => (
         <div key={index} onClick={() => setSelectedAddress(addr)}>
