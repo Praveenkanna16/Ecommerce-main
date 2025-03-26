@@ -164,3 +164,13 @@ Milestones
 	• Added radio buttons for COD and online payment on the order confirmation page.
 	• Configured PayPal payment buttons to be displayed when online payment is selected.
 	• Prepared the frontend for PayPal payment integration in the next milestone.
+
+🔹 Milestone 30 - Implementing PayPal Payment Gateway
+	•	Implemented online payment functionality using the PayPal API.
+	•	Installed and integrated the react-paypal-js package to handle PayPal transactions.
+	•	Used PayPalScriptProvider to load PayPal’s payment methods dynamically.
+	•	Configured PayPal’s client ID for authentication in the sandbox environment.
+	•	Displayed PayPal payment buttons when the online payment option is selected.
+	•	Successfully processed test transactions using PayPal’s sandbox mode.
+	•	Updated the frontend to reflect real-time payment status.
+	•	Ensured seamless integration for secure and user-friendly transactions.
