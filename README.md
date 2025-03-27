@@ -174,3 +174,12 @@ Milestones
 	•	Successfully processed test transactions using PayPal’s sandbox mode.
 	•	Updated the frontend to reflect real-time payment status.
 	•	Ensured seamless integration for secure and user-friendly transactions.
+
+🔹 Milestone 31 - Implementing Redux for Global State Management
+	•	Implemented global state management using the Redux library.
+	•	Installed and integrated the react-redux package to manage the global state.
+	•	Created a store folder with store.js and userActions.js files.
+	•	Configured the Redux store with a userReducer function to manage the global email state.
+	•	Defined the setEmail action in userActions.js to update the email in the Redux store.
+	•	Wrapped the App component inside the Provider in index.js to allow global state access.
+	•	Ensured seamless integration for managing user email across the application.

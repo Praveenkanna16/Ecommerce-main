@@ -48,8 +48,16 @@ userRouter.post("/login", async (req, res) => {
         }
 
         const token = jwt.sign({ email: user.email }, secret, { expiresIn: "1h" });
+        res.cookie('token', token, { httpOnly: true, sameSite: 'strict' });
+        res.cookie('token', token, { 
+            httpOnly: true, 
+            sameSite: 'strict', 
+            domain: '.localhost', 
+            expires: new Date(Date.now() + 3600000) 
+        });
 
-        res.status(200).json({ message: "User logged in", token });
+
+        res.status(200).json({ message: "User logged in" });
     } catch (error) {
         res.status(500).json({ error: "Server error" });
     }
