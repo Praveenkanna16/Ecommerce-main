@@ -1,12 +1,25 @@
 import { useState } from "react";
-import { Link } from "react-router-dom"; // Add this line at the top of your file
-import NavBar from '../Components/Navbar'; 
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setEmail } from "../redux/userSlice"; // Import Redux action
+import NavBar from "../Components/Navbar";
 
-export default function Example() {
+export default function Login() {
+  const [email, setEmailInput] = useState("");
+  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    dispatch(setEmail(email)); // Save email in Redux state
+    navigate("/dashboard"); // Redirect to dashboard after login
+  };
 
   return (
     <div className="bg-gray-900/50 rounded-md p-6">
+      <NavBar />
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <h2 className="mt-10 text-center text-2xl font-bold tracking-tight text-white">
@@ -15,7 +28,7 @@ export default function Example() {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form className="space-y-6" action="#" method="POST">
+          <form className="space-y-6" onSubmit={handleLogin}>
             {/* Email Input */}
             <div>
               <label
@@ -29,6 +42,8 @@ export default function Example() {
                   id="email"
                   name="email"
                   type="email"
+                  value={email}
+                  onChange={(e) => setEmailInput(e.target.value)}
                   required
                   className="block w-full rounded-md border-0 py-1.5 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-white focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
@@ -48,6 +63,8 @@ export default function Example() {
                   id="password"
                   name="password"
                   type={showPassword ? "text" : "password"}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   required
                   className="block w-full rounded-md border-0 py-1.5 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-white focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
@@ -108,17 +125,7 @@ export default function Example() {
               </div>
             </div>
 
-            {/* Forgot password */}
-            <div className="mt-2 text-sm">
-              <a
-                href="#"
-                className="font-semibold text-indigo-600 hover:text-indigo-500"
-              >
-                Forgot password?
-              </a>
-            </div>
-
-            {/* Remember me checkbox */}
+            {/* Remember me & Forgot password */}
             <div className="flex items-center justify-between">
               <div className="flex items-center">
                 <input
@@ -127,13 +134,13 @@ export default function Example() {
                   type="checkbox"
                   className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
                 />
-                <label
-                  htmlFor="remember-me"
-                  className="ml-2 block text-sm text-white"
-                >
+                <label htmlFor="remember-me" className="ml-2 block text-sm text-white">
                   Remember me
                 </label>
               </div>
+              <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500 text-sm">
+                Forgot password?
+              </a>
             </div>
 
             {/* Submit Button */}
@@ -150,10 +157,7 @@ export default function Example() {
             <div className="mt-2 text-sm text-center">
               <p>
                 Don’t have an account?{" "}
-                <Link
-                  to="/signup" // Navigate to the signup page
-                  className="font-semibold text-indigo-600 hover:text-indigo-500"
-                >
+                <Link to="/signup" className="font-semibold text-indigo-600 hover:text-indigo-500">
                   Sign up
                 </Link>
               </p>
