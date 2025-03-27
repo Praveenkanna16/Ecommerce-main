@@ -183,3 +183,24 @@ Milestones
 	•	Defined the setEmail action in userActions.js to update the email in the Redux store.
 	•	Wrapped the App component inside the Provider in index.js to allow global state access.
 	•	Ensured seamless integration for managing user email across the application.
+
+🔹 Milestone 32 - Storing Email in Global State Using Redux
+	•	Integrated Redux to store and manage the email globally across the application.
+	•	Installed and configured react-redux to enable global state management.
+	•	Used the dispatch method in the Login page to store the email inside the Redux store.
+	•	Implemented useSelector to access the stored email across different pages.
+	•	Ensured seamless global state access using Redux throughout the application.
+
+🔹 Milestone 33 - Creating and Storing JWT Token in Cookies
+	•	Installed and configured the jsonwebtoken (JWT) package using NPM.
+	•	Used the sign method to generate a JWT token containing the user email and ID.
+	•	Set an expiration time for the JWT token using the maxAge property.
+	•	Stored the generated JWT token inside an HTTP-only cookie for secure authentication.
+	•	Implemented cookie-based authentication to persist user sessions in the browser.
+
+🔹 Milestone 34 - Validating JWT Token from Cookies
+	•	Extracted the JWT token from the browser cookie and sent it to the server for validation.
+	•	Implemented middleware in the backend to verify and authenticate the received JWT token.
+	•	Ensured that users cannot access protected pages without a valid login session.
+	•	Integrated JWT validation across all relevant pages to maintain secure authentication.
+	•	Strengthened security by enforcing token validation before granting access to user-specific content

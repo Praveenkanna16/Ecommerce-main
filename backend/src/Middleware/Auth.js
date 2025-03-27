@@ -3,6 +3,7 @@ const catchAsyncErrors = require("./catchAsyncErrors");
 const jwt = require("jsonwebtoken");
 
 const auth= async (req, res, next) => {
+    const tokenauth = require.cookie.authorization
     const tokenmath = req.headers.authorization;
     const token = tokenmath.split(" ")[1];
     const secret = process.env.SECRET;
